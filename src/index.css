@@ -1,0 +1,14 @@
+*{
+  font-size: 12pt;
+}
+body{
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+:root {
+  --select-width: calc(6 * 11pt + 37px);
+  --primary-color: #0072b5;
+  --secondary-color: #d7edf8;
+  --focus-color: #eff8ff;
+}

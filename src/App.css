@@ -1,0 +1,21 @@
+div.container {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 700px;
+  min-width: 200px;
+  background-color: white;
+}
+div.inputContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 12px;
+  justify-content: space-between;
+  margin: 5px 0px;
+  padding: 0px;
+  width: 100%;
+}
+div.selectContainer{
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 12px;
+}

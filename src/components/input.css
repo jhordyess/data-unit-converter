@@ -1,0 +1,46 @@
+div.input {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid hsl(0, 0%, 80%);;
+  border-radius: 4px;
+  width: 100%;
+}
+div.input > div:first-child{
+  margin: 0px;
+  padding: 0px 8px;
+  border-right: 1.5px solid hsl(0, 0%, 80%);
+}
+div.input:hover{
+  border-color: var(--primary-color);
+}
+div.input:hover > div:first-child{
+  border-color: rgba(0, 0, 0, 0.6);
+}
+div.input > input {
+  margin: 2px;
+  padding: 6px;
+  border: none;
+  width: 100%;
+  border-radius: 3px 0px 0px 3px;
+  outline: none;
+}
+@keyframes uChange {
+  0% {
+    border-color: hsl(0, 0%, 80%);
+  }
+  50% {
+    border-color: rgba(0, 0, 0, 0.75);
+  }
+  100% {
+    border-color: hsl(0, 0%, 80%);
+  }
+}
+div.animation {
+  animation: uChange 0.75s;
+}
+div.animation > div:first-child{
+  animation: uChange 0.75s;
+}
