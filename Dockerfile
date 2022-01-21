@@ -15,6 +15,6 @@ RUN apt-get update \
   && apt-get autoremove --purge -y
 RUN rm -rf /etc/localtime \
   && ln -s /usr/share/zoneinfo/America/La_Paz /etc/localtime
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html/data-unit-converter
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
