@@ -72,7 +72,7 @@ const App = () => {
     currentTarget,
   }: React.ChangeEvent<HTMLInputElement>): void => {
     clean();
-    if (currentTarget.checked) setOptions(options);
+    if (currentTarget.checked) setOptions(selectOps);
     else {
       setOptions((curr: Toptions) => {
         const aux = curr.filter(
@@ -137,7 +137,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <h2>Data units converter</h2>
+      <h2>Data unit converter</h2>
       <div className="optionsContainer">
         <ToogleButton
           default={true}
@@ -192,7 +192,7 @@ const App = () => {
       </div>
       <footer>
         Made with 💪 by{" "}
-        <a href="https://jhordyess.com" target="_blank">
+        <a href="https://jhordyess.com" target="_blank" rel="noreferrer">
           Jhordyess
         </a>
       </footer>

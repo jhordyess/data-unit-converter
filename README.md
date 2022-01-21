@@ -1,6 +1,6 @@
-# Data units converter
+# Data unit converter
 
-A simple data units converter.
+A simple data unit converter.
 
 Use the converter with binary prefixes (recommended), and the traditional prefixes.
 
@@ -15,7 +15,7 @@ Using:
 - Icons: [Primer - Octicons](https://primer.style/octicons/)
 - Font family: [Google fonts - Dosis, designed by Impallari Type](https://fonts.google.com/specimen/Dosis)
 
-See live: [https://jhordyess.github.io/data-units-converter/](https://jhordyess.github.io/data-units-converter/)
+See live: [https://jhordyess.github.io/data-unit-converter/](https://jhordyess.github.io/data-unit-converter/)
 
 Also was tested as a Docker image. Use the `Dockerfile.prod` to build.
 

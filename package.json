@@ -1,5 +1,5 @@
 {
-  "name": "data-units-converter",
+  "name": "data-unit-converter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -46,5 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://jhordyess.github.io/data-units-converter"
+  "homepage": "https://jhordyess.github.io/data-unit-converter"
 }
