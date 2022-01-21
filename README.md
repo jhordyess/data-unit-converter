@@ -17,6 +17,8 @@ Using:
 
 See live: [https://jhordyess.github.io/data-units-converter/](https://jhordyess.github.io/data-units-converter/)
 
+Also was tested as a Docker image. Use the `Dockerfile.prod` to build.
+
 ---
 
 @2022 Jhordyess
