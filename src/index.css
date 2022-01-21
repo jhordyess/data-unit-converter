@@ -1,14 +1,15 @@
-*{
-  font-size: 12pt;
-}
-body{
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap");
+body {
   margin: 0px;
   padding: 0px;
-  font-family: sans-serif;
+  font-family: "Dosis", sans-serif;
+}
+input {
+  font-size: 1em;
+  font-family: "Dosis", sans-serif;
 }
 :root {
-  --select-width: calc(6 * 11pt + 37px);
   --primary-color: #0072b5;
-  --secondary-color: #d7edf8;
-  --focus-color: #eff8ff;
+  --hover-color: royalblue;
+  --space: 12px;
 }

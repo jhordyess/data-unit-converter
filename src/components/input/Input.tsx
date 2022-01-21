@@ -1,9 +1,8 @@
 import React from "react";
-import "./input.css";
+import "./Input.css";
 const Input = React.forwardRef(
   (
     prop: {
-      //TODO implementar un datalist
       value: string;
       symbol: string;
       handleChangeValue: any;
@@ -23,8 +22,10 @@ const Input = React.forwardRef(
       animationOn,
     }));
     return (
-      <div className={animation ? "input animation" : "input"}
-        onAnimationEnd={animationOff}>
+      <div
+        className={animation ? "bFXyQu animation" : "bFXyQu"}
+        onAnimationEnd={animationOff}
+      >
         <div>{prop.symbol}</div>
         <input
           type="text"

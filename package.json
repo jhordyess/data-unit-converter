@@ -1,5 +1,5 @@
 {
-  "name": "bit-byte-calc",
+  "name": "data-units-converter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
