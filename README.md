@@ -15,7 +15,7 @@ Using:
 - Icons: [Primer - Octicons](https://primer.style/octicons/)
 - Font family: [Google fonts - Dosis, designed by Impallari Type](https://fonts.google.com/specimen/Dosis)
 
-See live: [https://jhordyess.github.io/data-unit-converter/](https://jhordyess.github.io/data-unit-converter/)
+See online: [https://jhordyess.github.io/data-unit-converter/](https://jhordyess.github.io/data-unit-converter/)
 
 Also was tested as a Docker image. Use the `Dockerfile` to build, map port 80 to port 80, run the container, and visit [http://localhost/data-unit-converter/](http://localhost/data-unit-converter/).
 
