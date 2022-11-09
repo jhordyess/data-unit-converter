@@ -6,18 +6,36 @@ Use the converter with binary prefixes (recommended), and the traditional prefix
 
 See the theory in [Units of information](https://wikipedia.org/wiki/Units_of_information) in Wikipedia.
 
-Using:
+## Online
+
+See online: [https://jhordyess.github.io/data-unit-converter/](https://jhordyess.github.io/data-unit-converter/).
+
+## Dockerize
+
+Run the `docker.sh` file, it will create a new container image with the tag `jhordyess/datun` and run it; so you can visit [http://localhost](http://localhost).
+
+```sh
+bash docker.sh
+```
+
+Run for PowerShell `docker.ps1`.
+
+```ps1
+& docker.ps1
+```
+
+## Dev Info
 
 - JavaScript library: [Meta - React](https://reactjs.org/)
-- Build tool: [Meta - Create React App](https://create-react-app.dev/)
 - Math library for JavaScript: [Jos de Jong - Math.js](https://mathjs.org/)
 - Select Component for React: [Jed Watson - React Select](https://react-select.com/)
 - Icons: [Primer - Octicons](https://primer.style/octicons/)
 - Font family: [Google fonts - Dosis, designed by Impallari Type](https://fonts.google.com/specimen/Dosis)
-
-See online: [https://jhordyess.github.io/data-unit-converter/](https://jhordyess.github.io/data-unit-converter/)
-
-Also was tested as a Docker image. Use the `Dockerfile` to build, map port 80 to port 80, run the container, and visit [http://localhost/data-unit-converter/](http://localhost/data-unit-converter/).
+- Module bundler: [OpenJS Foundation - Webpack](https://webpack.js.org/)
+- Server Environment: [OpenJS Foundation - Node.js](https://nodejs.org/)
+- Platform: [Docker](https://www.docker.com/)
+- Web Server: [NGINX](https://www.nginx.com/)
+- [VSCode](https://code.visualstudio.com/) with [remote containers](https://code.visualstudio.com/docs/remote/containers)
 
 ## License
 
