@@ -1,5 +1,5 @@
-import { Toptions } from "./Toptions";
-const selectOps: Toptions = [
+import { Toptions } from "./types";
+const selectOptions: Toptions = [
   {
     label: "Basic",
     options: [
@@ -126,5 +126,4 @@ const selectOps: Toptions = [
     ],
   },
 ];
-
-export default selectOps;
+export default selectOptions;

@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import "@styles/global.css";
+import App from "@components/Calculator";
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );

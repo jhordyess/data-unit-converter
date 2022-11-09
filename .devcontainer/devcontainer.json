@@ -1,0 +1,17 @@
+{
+  "name": "data-unit-converter",
+  "image": "jhordyess/node:16",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "burkeholland.simple-react-snippets"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      }
+    }
+  },
+  "postCreateCommand": "bash config.sh",
+  "remoteUser": "node"
+}

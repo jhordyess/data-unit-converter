@@ -1,4 +1,5 @@
-import "./ToogleButton.css";
+import * as React from "react";
+import "./style.css";
 const ToogleButton = (props: {
   handleChange: any;
   default: boolean;

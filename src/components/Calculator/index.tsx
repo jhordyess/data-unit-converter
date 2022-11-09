@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Select from "react-select";
 import { create, all } from "mathjs";
 import {
@@ -8,11 +8,11 @@ import {
   TrashIcon,
 } from "@primer/octicons-react";
 
-import "./App.css";
-import selectOps from "./extra/selectOps";
-import { Toptions } from "./extra/Toptions";
-import Input from "./components/input/Input";
-import ToogleButton from "./components/toogleButton/ToogleButton";
+import "./style.css";
+import selectOptions from "./selectOptions";
+import { Toptions } from "./selectOptions/types";
+import Input from "./Input";
+import ToogleButton from "./ToogleButton";
 
 const config = {};
 const math = create(all, config);
@@ -35,12 +35,12 @@ const convert = (value: string, unit1: string, unit2: string) => {
   }
 };
 
-const App = () => {
+export default function () {
   const sw = React.useRef(false);
   const [direction, setDirection] = React.useState(true);
 
   const [value1, setValue1] = React.useState("");
-  const [unit1, setUnit1] = React.useState(selectOps[0].options[0]);
+  const [unit1, setUnit1] = React.useState(selectOptions[0].options[0]);
   const handleChangeValue1 = ({
     currentTarget,
   }: React.ChangeEvent<HTMLInputElement>): void => {
@@ -54,7 +54,7 @@ const App = () => {
   };
 
   const [value2, setValue2] = React.useState("");
-  const [unit2, setUnit2] = React.useState(selectOps[0].options[2]);
+  const [unit2, setUnit2] = React.useState(selectOptions[0].options[2]);
   const handleChangeValue2 = ({
     currentTarget,
   }: React.ChangeEvent<HTMLInputElement>): void => {
@@ -67,12 +67,12 @@ const App = () => {
     setUnit2(event);
   };
 
-  const [options, setOptions]: any = React.useState(selectOps);
+  const [options, setOptions]: any = React.useState(selectOptions);
   const handleChangeOptions = ({
     currentTarget,
   }: React.ChangeEvent<HTMLInputElement>): void => {
     clean();
-    if (currentTarget.checked) setOptions(selectOps);
+    if (currentTarget.checked) setOptions(selectOptions);
     else {
       setOptions((curr: Toptions) => {
         const aux = curr.filter(
@@ -131,8 +131,8 @@ const App = () => {
     setDirection(true);
     setValue2("");
     setValue1("");
-    setUnit1(selectOps[0].options[0]);
-    setUnit2(selectOps[0].options[2]);
+    setUnit1(selectOptions[0].options[0]);
+    setUnit2(selectOptions[0].options[2]);
   };
 
   return (
@@ -192,12 +192,10 @@ const App = () => {
       </div>
       <footer>
         Made with 💪 by{" "}
-        <a href="https://jhordyess.com" target="_blank" rel="noreferrer">
+        <a href="https://www.jhordyess.com" target="_blank" rel="noreferrer">
           Jhordyess
         </a>
       </footer>
     </div>
   );
-};
-
-export default App;
+}
