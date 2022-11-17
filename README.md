@@ -12,17 +12,7 @@ See online: [https://jhordyess.github.io/data-unit-converter/](https://jhordyess
 
 ## Dockerize
 
-Run the `docker.sh` file, it will create a new container image with the tag `jhordyess/datun` and run it; so you can visit [http://localhost](http://localhost).
-
-```sh
-bash docker.sh
-```
-
-Run for PowerShell `docker.ps1`.
-
-```ps1
-& docker.ps1
-```
+Please review the [docker](https://github.com/jhordyess/data-unit-converter/tree/docker) branch.
 
 ## Dev Info
 
