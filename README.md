@@ -8,7 +8,7 @@ See the theory in [Units of information](https://wikipedia.org/wiki/Units_of_inf
 
 ## Online
 
-See online: [https://jhordyess.github.io/data-unit-converter/](https://jhordyess.github.io/data-unit-converter/).
+See online:<https://datun.jhordyess.com>.
 
 ## Dockerize
 
@@ -29,7 +29,7 @@ Please review the [docker](https://github.com/jhordyess/data-unit-converter/tree
 
 ## License
 
-© 2022 [Jhordyess](https://github.com/jhordyess). Under the [MIT](https://choosealicense.com/licenses/mit/) license.
+© 2023 [Jhordyess](https://github.com/jhordyess). Under the [MIT](https://choosealicense.com/licenses/mit/) license.
 
 ---
 
