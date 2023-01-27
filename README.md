@@ -8,7 +8,7 @@ See the theory in [Units of information](https://wikipedia.org/wiki/Units_of_inf
 
 ## Online
 
-See online:<https://datun.jhordyess.com>.
+See online: <https://datun.jhordyess.com>.
 
 ## Dockerize
 
