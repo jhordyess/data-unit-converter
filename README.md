@@ -6,13 +6,13 @@ Use the converter with binary prefixes (recommended), and the traditional prefix
 
 See the theory in [Units of information](https://wikipedia.org/wiki/Units_of_information) in Wikipedia.
 
+## Screenshot
+
+![Home](https://res.cloudinary.com/jhordyess/image/upload/v1675256029/data-unit-converter/home.png_g4nb6r.png)
+
 ## Online
 
 See online: <https://datun.jhordyess.com>.
-
-## Dockerize
-
-Please review the [docker](https://github.com/jhordyess/data-unit-converter/tree/docker) branch.
 
 ## Dev Info
 
