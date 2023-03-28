@@ -1,11 +1,10 @@
 {
   "name": "data-unit-converter",
-  "image": "jhordyess/node:16",
+  "image": "jhordyess/node",
   "customizations": {
     "vscode": {
       "extensions": [
-        "esbenp.prettier-vscode",
-        "burkeholland.simple-react-snippets"
+        "esbenp.prettier-vscode"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "zsh"
