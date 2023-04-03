@@ -1,18 +1,13 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": true,
     "module": "es6",
     "target": "es5",
-    "jsx": "react",
-    "allowJs": true,
     "moduleResolution": "node",
-    //
-    "baseUrl": "./",
+    "jsx": "react",
+    "baseUrl": "./src",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@styles/*": ["src/styles/*"]
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"]
     }
-  },
-  "exclude": ["node_modules", "dist"]
+  }
 }

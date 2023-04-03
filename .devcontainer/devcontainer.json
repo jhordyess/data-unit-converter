@@ -4,7 +4,9 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "dsznajder.es7-react-js-snippets",
+        "Syler.sass-indented"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "zsh"
