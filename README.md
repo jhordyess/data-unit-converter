@@ -1,6 +1,6 @@
 # Data unit converter
 
-A simple data unit converter to convert between binary and traditional prefixes.
+A simple data unit converter using binary and traditional prefixes.
 
 ## Description
 
