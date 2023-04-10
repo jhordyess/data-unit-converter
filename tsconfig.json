@@ -7,7 +7,9 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"],
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@pages/*": ["pages/*"]
     }
-  }
+  },
+  "exclude": ["node_modules", "dist"]
 }
