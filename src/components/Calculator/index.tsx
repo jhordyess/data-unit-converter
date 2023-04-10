@@ -7,10 +7,8 @@ import {
   ArrowLeftIcon,
   TrashIcon,
 } from "@primer/octicons-react";
-
 import "./style.css";
-import selectOptions from "./selectOptions";
-import { Toptions } from "./selectOptions/types";
+import selectOptions, { Toptions } from "./options";
 import Input from "./Input";
 import ToogleButton from "./ToogleButton";
 
@@ -136,8 +134,7 @@ export default function () {
   };
 
   return (
-    <div className="container">
-      <h2>Data unit converter</h2>
+    <>
       <div className="optionsContainer">
         <ToogleButton
           default={true}
@@ -190,12 +187,6 @@ export default function () {
           />
         </div>
       </div>
-      <footer>
-        Made with 💪 by{" "}
-        <a href="https://www.jhordyess.com" target="_blank" rel="noreferrer">
-          Jhordyess
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }

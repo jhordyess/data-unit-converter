@@ -1,4 +1,7 @@
-import { Toptions } from "./types";
+type Toption = { value: string; label: string; symbol?: string };
+
+type Toptions = { label: string; options: Toption[] }[];
+
 const selectOptions: Toptions = [
   {
     label: "Basic",
@@ -126,4 +129,6 @@ const selectOptions: Toptions = [
     ],
   },
 ];
+
 export default selectOptions;
+export { Toptions };
