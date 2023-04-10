@@ -1,15 +1,21 @@
 #? Command history
+# Install global npm package for npm
 sudo npm i -g npm
-# npm init -y
+
+# Install required packages for React development
 npm i react react-dom
+
+# Bundler
 npm i -D webpack webpack-cli webpack-dev-server
 npm i -D html-webpack-plugin
 npm i -D mini-css-extract-plugin css-loader style-loader
 npm i -D css-minimizer-webpack-plugin terser-webpack-plugin clean-webpack-plugin
 
-npm i -D @types/react @types/react-dom
-npm i -D typescript ts-loader
+# Hosting
+npm i -D gh-pages cname-webpack-plugin
 
-npm i -D gh-pages
-
-npm i react-select @primer/octicons-react mathjs
+# Extra commands
+npm i -D typescript ts-loader @types/react @types/react-dom
+npm i -D mathjs
+npm i -D react-select
+npm i -D @primer/octicons-react

@@ -2,12 +2,6 @@
   "name": "data-unit-converter",
   "description": "A simple data unit converter.",
   "version": "1.0.0",
-  "scripts": {
-    "start": "webpack serve --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-  },
   "keywords": [
     "react",
     "data-conversion",
@@ -18,6 +12,12 @@
   ],
   "author": "Jhordy Gavinchu <dev@jhordyess.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack serve --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
   "homepage": "https://jhordyess.github.io/data-unit-converter",
   "repository": {
     "type": "git",
@@ -27,16 +27,17 @@
     "url": "https://github.com/jhordyess/data-unit-converter/issues"
   },
   "dependencies": {
-    "@primer/octicons-react": "^17.9.0",
-    "mathjs": "^11.3.3",
+    "@primer/octicons-react": "^18.3.0",
+    "mathjs": "^11.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-select": "^5.6.0"
+    "react-select": "^5.7.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "clean-webpack-plugin": "^4.0.0",
+    "cname-webpack-plugin": "^3.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "gh-pages": "^4.0.0",
