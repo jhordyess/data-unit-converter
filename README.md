@@ -19,7 +19,7 @@ For a theoretical explanation, you could visit: [Information units](https://wiki
 
 ### Online
 
-Visit the project at: <https://datun.jhordyess.com>.
+Visit the project at: <https://bit.jhordyess.com>.
 
 ### Screenshot
 
