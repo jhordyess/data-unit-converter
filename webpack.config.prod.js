@@ -44,7 +44,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new CnameWebpackPlugin({
-      domain: "datun.jhordyess.com",
+      domain: "bit.jhordyess.com",
     }),
   ],
   optimization: {
