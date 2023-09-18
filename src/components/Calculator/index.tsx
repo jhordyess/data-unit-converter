@@ -1,147 +1,144 @@
-import * as React from "react";
-import Select from "react-select";
-import { create, all } from "mathjs";
-import {
-  SyncIcon,
-  ArrowRightIcon,
-  ArrowLeftIcon,
-  TrashIcon,
-} from "@primer/octicons-react";
-import "./style.css";
-import selectOptions, { Toptions } from "./options";
-import Input from "./Input";
-import ToogleButton from "./ToogleButton";
+import './style.css'
 
-const config = {};
-const math = create(all, config);
-math.createUnit("word", "16 b");
-math.createUnit("nibble", "4 b");
+import { useRef, useState, useEffect, type ChangeEventHandler } from 'react'
+import Select, { type ActionMeta, type SingleValue } from 'react-select'
+import { create, all } from 'mathjs'
+import { SyncIcon, ArrowRightIcon, ArrowLeftIcon, TrashIcon } from '@primer/octicons-react'
+import selectOptions, { type TOptions, type TOption } from './options'
+import Input, { type InputRef } from './Input'
+import ToggleButton from './ToggleButton'
+
+const config = {}
+const math = create(all, config)
+math.createUnit('word', '16 b')
+math.createUnit('nibble', '4 b')
 math.config({
-  number: "Fraction",
-});
-const pattern = /^-?(?:0|[1-9]\d*)?(?:\.\d*)?(?:[eE][+-]?\d*)?$/;
+  number: 'Fraction'
+})
+
+const pattern = /^-?(?:0|[1-9]\d*)?(?:\.\d*)?(?:[eE][+-]?\d*)?$/
 
 const convert = (value: string, unit1: string, unit2: string) => {
   try {
     const aux = math
       .evaluate(`${parseFloat(value)} ${unit1} to ${unit2}`)
       .toNumeric(unit2)
-      .valueOf();
-    return isNaN(aux) ? "" : aux.toString();
+      .valueOf()
+    return isNaN(aux) ? '' : aux.toString()
   } catch (error) {
-    return "";
+    return ''
   }
-};
+}
 
-export default function () {
-  const sw = React.useRef(false);
-  const [direction, setDirection] = React.useState(true);
+export default function Calculator() {
+  const sw = useRef(false)
+  const [direction, setDirection] = useState(true)
 
-  const [value1, setValue1] = React.useState("");
-  const [unit1, setUnit1] = React.useState(selectOptions[0].options[0]);
-  const handleChangeValue1 = ({
-    currentTarget,
-  }: React.ChangeEvent<HTMLInputElement>): void => {
-    setDirection(true);
-    if (!sw.current) sw.current = true;
-    if (pattern.test(currentTarget.value)) setValue1(currentTarget.value);
-  };
-  const handleChangeUnit1 = (event: any): void => {
-    if (!value1 || !value2) sw.current = false;
-    setUnit1(event);
-  };
+  const [value1, setValue1] = useState('')
+  const [unit1, setUnit1] = useState<TOption>(selectOptions[0].options[0])
 
-  const [value2, setValue2] = React.useState("");
-  const [unit2, setUnit2] = React.useState(selectOptions[0].options[2]);
-  const handleChangeValue2 = ({
-    currentTarget,
-  }: React.ChangeEvent<HTMLInputElement>): void => {
-    setDirection(false);
-    if (!sw.current) sw.current = true;
-    if (pattern.test(currentTarget.value)) setValue2(currentTarget.value);
-  };
-  const handleChangeUnit2 = (event: any) => {
-    if (!value1 || !value2) sw.current = false;
-    setUnit2(event);
-  };
+  const handleChangeValue1: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
+    setDirection(true)
+    if (!sw.current) sw.current = true
+    if (pattern.test(currentTarget.value)) setValue1(currentTarget.value)
+  }
 
-  const [options, setOptions]: any = React.useState(selectOptions);
-  const handleChangeOptions = ({
-    currentTarget,
-  }: React.ChangeEvent<HTMLInputElement>): void => {
-    clean();
-    if (currentTarget.checked) setOptions(selectOptions);
+  const handleChangeUnit1: (
+    newValue: SingleValue<TOption>,
+    actionMeta: ActionMeta<TOption>
+  ) => void = event => {
+    if (!value1 || !value2) sw.current = false
+    if (event) setUnit1(event)
+  }
+
+  const [value2, setValue2] = useState('')
+  const [unit2, setUnit2] = useState(selectOptions[0].options[2])
+  const handleChangeValue2: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
+    setDirection(false)
+    if (!sw.current) sw.current = true
+    if (pattern.test(currentTarget.value)) setValue2(currentTarget.value)
+  }
+  const handleChangeUnit2: (
+    newValue: SingleValue<TOption>,
+    actionMeta: ActionMeta<TOption>
+  ) => void = event => {
+    if (!value1 || !value2) sw.current = false
+    if (event) setUnit2(event)
+  }
+
+  const [options, setOptions] = useState<TOptions>(selectOptions)
+  const handleChangeOptions: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
+    clean()
+    if (currentTarget.checked) setOptions(selectOptions)
     else {
-      setOptions((curr: Toptions) => {
-        const aux = curr.filter(
-          (opt) => opt.label === "Basic" || opt.label === "Bit SI"
-        );
+      setOptions((curr: TOptions) => {
+        const aux = curr.filter(opt => opt.label === 'Basic' || opt.label === 'Bit SI')
         aux.push({
-          label: "Byte SI",
+          label: 'Byte SI',
           options: [
-            { value: "KiB", label: "kilobyte", symbol: "kB" },
-            { value: "MiB", label: "megabyte", symbol: "MB" },
-            { value: "GiB", label: "gigabyte", symbol: "GB" },
-            { value: "TiB", label: "terabyte", symbol: "TB" },
-            { value: "PiB", label: "petabyte", symbol: "PB" },
-          ],
-        });
-        return aux;
-      });
+            { value: 'KiB', label: 'kilobyte', symbol: 'kB' },
+            { value: 'MiB', label: 'megabyte', symbol: 'MB' },
+            { value: 'GiB', label: 'gigabyte', symbol: 'GB' },
+            { value: 'TiB', label: 'terabyte', symbol: 'TB' },
+            { value: 'PiB', label: 'petabyte', symbol: 'PB' }
+          ]
+        })
+        return aux
+      })
     }
-  };
+  }
 
-  const childRef1: any = React.useRef();
-  const childRef2: any = React.useRef();
+  const childRef1 = useRef<InputRef>(null)
+  const childRef2 = useRef<InputRef>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!sw.current) {
-      sw.current = true;
-      return;
+      sw.current = true
+      return
     }
     if (direction) {
-      setValue2(convert(value1, unit1.value, unit2.value));
-      childRef2.current.animationOn();
+      setValue2(convert(value1, unit1.value, unit2.value))
+      childRef2.current?.animationOn()
     } else {
-      setValue1(convert(value2, unit2.value, unit1.value));
-      childRef1.current.animationOn();
+      setValue1(convert(value2, unit2.value, unit1.value))
+      childRef1.current?.animationOn()
     }
-    sw.current = false;
-  }, [unit1, unit2, value1, value2]);
+    sw.current = false
+  }, [value1, value2, unit1, unit2, direction])
 
   const invertAll = (): void => {
     if (value1 || value1)
       if (direction) {
-        setDirection(false);
-        setValue2(value1);
+        setDirection(false)
+        setValue2(value1)
       } else {
-        setDirection(true);
-        setValue1(value2);
+        setDirection(true)
+        setValue1(value2)
       }
-    if (!value1 || !value2) sw.current = false;
-    const aux = unit2;
-    setUnit2(unit1);
-    setUnit1(aux);
-  };
+    if (!value1 || !value2) sw.current = false
+    const aux = unit2
+    setUnit2(unit1)
+    setUnit1(aux)
+  }
 
   const clean = (): void => {
-    sw.current = false;
-    setDirection(true);
-    setValue2("");
-    setValue1("");
-    setUnit1(selectOptions[0].options[0]);
-    setUnit2(selectOptions[0].options[2]);
-  };
+    sw.current = false
+    setDirection(true)
+    setValue2('')
+    setValue1('')
+    setUnit1(selectOptions[0].options[0])
+    setUnit2(selectOptions[0].options[2])
+  }
 
   return (
     <>
       <div className="optionsContainer">
-        <ToogleButton
+        <ToggleButton
           default={true}
           handleChange={handleChangeOptions}
-          trueVal={"Binary prefixes"}
-          falseVal={"Traditional prefixes"}
-          title="Toogle units"
+          trueVal={'Binary prefixes'}
+          falseVal={'Traditional prefixes'}
+          title="Toggle units"
         />
         <button onClick={clean} title="Reset values">
           <TrashIcon size={20} />
@@ -154,13 +151,7 @@ export default function () {
           symbol={unit1.symbol ? unit1.symbol : unit1.value}
           ref={childRef1}
         />
-        <button>
-          {direction ? (
-            <ArrowRightIcon size={20} />
-          ) : (
-            <ArrowLeftIcon size={20} />
-          )}
-        </button>
+        <button>{direction ? <ArrowRightIcon size={20} /> : <ArrowLeftIcon size={20} />}</button>
         <Input
           handleChangeValue={handleChangeValue2}
           value={value2}
@@ -169,24 +160,16 @@ export default function () {
         />
       </div>
       <div className="selectContainer">
-        <div style={{ flex: "1" }}>
-          <Select
-            options={options}
-            value={unit1}
-            onChange={handleChangeUnit1}
-          />
+        <div style={{ flex: '1' }}>
+          <Select options={options} value={unit1} onChange={handleChangeUnit1} />
         </div>
         <button onClick={invertAll} title="Invert values">
           <SyncIcon size={20} />
         </button>
-        <div style={{ flex: "1" }}>
-          <Select
-            options={options}
-            value={unit2}
-            onChange={handleChangeUnit2}
-          />
+        <div style={{ flex: '1' }}>
+          <Select options={options} value={unit2} onChange={handleChangeUnit2} />
         </div>
       </div>
     </>
-  );
+  )
 }

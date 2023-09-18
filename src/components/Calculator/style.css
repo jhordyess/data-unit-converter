@@ -5,11 +5,13 @@ div.container {
   min-width: 200px;
   background-color: white;
 }
+
 div.container > div.optionsContainer {
   display: flex;
   gap: var(--space);
   margin-bottom: 18px;
 }
+
 div.container > div.inputContainer {
   display: flex;
   flex-flow: row nowrap;
@@ -19,11 +21,13 @@ div.container > div.inputContainer {
   padding: 0px;
   width: 100%;
 }
+
 div.container > div.selectContainer {
   display: flex;
   flex-flow: row nowrap;
   gap: var(--space);
 }
+
 div.container button {
   border: none;
   border-radius: 4px;
@@ -31,20 +35,24 @@ div.container button {
   color: white;
   cursor: pointer;
 }
+
 div.container button:hover {
   background-color: var(--hover-color);
 }
+
 div.container > footer {
   margin-top: 18px;
   padding-top: 8px;
   border-top: 1px solid var(--primary-color);
   text-align: center;
 }
+
 div.container > footer > a {
   font-weight: bold;
   text-decoration: none;
   color: var(--primary-color);
 }
+
 div.container > footer > a:hover {
   color: var(--hover-color);
 }

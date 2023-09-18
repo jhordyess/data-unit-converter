@@ -1,7 +1,6 @@
-import * as React from "react";
-import Calculator from "@components/Calculator";
+import Calculator from '@/components/Calculator'
 
-export default function () {
+export default function Home() {
   return (
     <div className="container">
       <h2>Data unit converter</h2>
@@ -12,13 +11,10 @@ export default function () {
           Jhordyess
         </a>
         <br />
-        <a
-          href="https://github.com/jhordyess/data-unit-converter"
-          target="_blank"
-        >
+        <a href="https://github.com/jhordyess/data-unit-converter" target="_blank">
           👉 View on GitHub
         </a>
       </footer>
     </div>
-  );
+  )
 }

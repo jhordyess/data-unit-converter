@@ -1,134 +1,133 @@
-type Toption = { value: string; label: string; symbol?: string };
+export type TOption = { value: string; label: string; symbol?: string }
 
-type Toptions = { label: string; options: Toption[] }[];
+export type TOptions = { label: string; options: TOption[] }[]
 
-const selectOptions: Toptions = [
+const selectOptions: TOptions = [
   {
-    label: "Basic",
+    label: 'Basic',
     options: [
       {
-        value: "b",
-        label: "bit",
+        value: 'b',
+        label: 'bit'
       },
       {
-        value: "nibble",
-        label: "nibble",
+        value: 'nibble',
+        label: 'nibble'
       },
       {
-        value: "B",
-        label: "byte",
+        value: 'B',
+        label: 'byte'
       },
       {
-        value: "word",
-        label: "word",
-      },
-    ],
+        value: 'word',
+        label: 'word'
+      }
+    ]
   },
   {
-    label: "Bit SI",
+    label: 'Bit SI',
     //multiples of bit, decimal prefixs
     options: [
       {
-        value: "kb",
-        label: "kilobit",
+        value: 'kb',
+        label: 'kilobit'
       },
       {
-        value: "Mb",
-        label: "megabit",
+        value: 'Mb',
+        label: 'megabit'
       },
       {
-        value: "Gb",
-        label: "gigabit",
+        value: 'Gb',
+        label: 'gigabit'
       },
       {
-        value: "Tb",
-        label: "terabit",
+        value: 'Tb',
+        label: 'terabit'
       },
       {
-        value: "Pb",
-        label: "petabit",
-      },
-    ],
+        value: 'Pb',
+        label: 'petabit'
+      }
+    ]
   },
   {
-    label: "Bit bin",
+    label: 'Bit bin',
     //multiples of bit, binary prefixs
     options: [
       {
-        value: "Kib",
-        label: "kibibit",
+        value: 'Kib',
+        label: 'kibibit'
       },
       {
-        value: "Mib",
-        label: "mebibit",
+        value: 'Mib',
+        label: 'mebibit'
       },
       {
-        value: "Gib",
-        label: "gibibit",
+        value: 'Gib',
+        label: 'gibibit'
       },
       {
-        value: "Tib",
-        label: "tebibit",
+        value: 'Tib',
+        label: 'tebibit'
       },
       {
-        value: "Pib",
-        label: "pebibit",
-      },
-    ],
+        value: 'Pib',
+        label: 'pebibit'
+      }
+    ]
   },
   {
-    label: "Byte SI",
+    label: 'Byte SI',
     //multiples of byte, decimal prefixs
     options: [
       {
-        value: "kB",
-        label: "kilobyte",
+        value: 'kB',
+        label: 'kilobyte'
       },
       {
-        value: "MB",
-        label: "megabyte",
+        value: 'MB',
+        label: 'megabyte'
       },
       {
-        value: "GB",
-        label: "gigabyte",
+        value: 'GB',
+        label: 'gigabyte'
       },
       {
-        value: "TB",
-        label: "terabyte",
+        value: 'TB',
+        label: 'terabyte'
       },
       {
-        value: "PB",
-        label: "petabyte",
-      },
-    ],
+        value: 'PB',
+        label: 'petabyte'
+      }
+    ]
   },
   {
-    label: "Byte bin",
+    label: 'Byte bin',
     //multiples of byte, binary prefix
     options: [
       {
-        value: "KiB",
-        label: "kibibyte",
+        value: 'KiB',
+        label: 'kibibyte'
       },
       {
-        value: "MiB",
-        label: "mebibyte",
+        value: 'MiB',
+        label: 'mebibyte'
       },
       {
-        value: "GiB",
-        label: "gibibyte",
+        value: 'GiB',
+        label: 'gibibyte'
       },
       {
-        value: "TiB",
-        label: "tebibyte",
+        value: 'TiB',
+        label: 'tebibyte'
       },
       {
-        value: "PiB",
-        label: "pebibyte",
-      },
-    ],
-  },
-];
+        value: 'PiB',
+        label: 'pebibyte'
+      }
+    ]
+  }
+]
 
-export default selectOptions;
-export { Toptions };
+export default selectOptions

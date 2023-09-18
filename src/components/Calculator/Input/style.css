@@ -8,17 +8,21 @@ div.bFXyQu {
   border-radius: 4px;
   width: 100%;
 }
+
 div.bFXyQu > div:first-child {
   margin: 0px;
   padding: 0px 8px;
   border-right: 1.5px solid hsl(0, 0%, 80%);
 }
+
 div.bFXyQu:hover {
   border-color: var(--hover-color);
 }
+
 div.bFXyQu:hover > div:first-child {
   border-color: rgba(0, 0, 0, 0.6);
 }
+
 div.bFXyQu > input {
   margin: 2px;
   padding: 6px;
@@ -26,6 +30,7 @@ div.bFXyQu > input {
   width: 100%;
   outline: none;
 }
+
 @keyframes uChange {
   0% {
     border-color: hsl(0, 0%, 80%);
@@ -37,9 +42,11 @@ div.bFXyQu > input {
     border-color: hsl(0, 0%, 80%);
   }
 }
+
 div.animation {
   animation: uChange 0.75s;
 }
+
 div.animation > div:first-child {
   animation: uChange 0.75s;
 }

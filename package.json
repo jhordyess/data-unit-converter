@@ -1,54 +1,45 @@
 {
   "name": "data-unit-converter",
-  "description": "A simple data unit converter.",
-  "version": "1.0.0",
+  "description": "A simple data unit converter",
+  "version": "1.1.0",
+  "author": "Jhordy Gavinchu <dev@jhordyess.com>",
+  "license": "MIT",
+  "private": true,
   "keywords": [
     "react",
     "data-conversion",
     "mathjs",
-    "typescript",
-    "webpack",
-    "docker-container"
+    "typescript"
   ],
-  "author": "Jhordy Gavinchu <dev@jhordyess.com>",
-  "license": "MIT",
+  "type": "module",
   "scripts": {
-    "start": "webpack serve --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js",
-    "predeploy": "npm run build",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write .",
+    "predeploy": "yarn lint && yarn build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://jhordyess.github.io/data-unit-converter",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jhordyess/data-unit-converter.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jhordyess/data-unit-converter/issues"
-  },
   "dependencies": {
-    "@primer/octicons-react": "^18.3.0",
+    "@primer/octicons-react": "^19.7.0",
     "mathjs": "^11.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-select": "^5.7.2"
   },
   "devDependencies": {
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.8",
-    "clean-webpack-plugin": "^4.0.0",
-    "cname-webpack-plugin": "^3.0.0",
-    "css-loader": "^6.7.1",
-    "css-minimizer-webpack-plugin": "^4.2.2",
-    "gh-pages": "^4.0.0",
-    "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.6.1",
-    "style-loader": "^3.3.1",
-    "terser-webpack-plugin": "^5.3.6",
-    "ts-loader": "^9.4.1",
-    "typescript": "^4.8.4",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
   }
 }

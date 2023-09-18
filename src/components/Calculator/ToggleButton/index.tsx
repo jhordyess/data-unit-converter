@@ -1,11 +1,12 @@
-import * as React from "react";
-import "./style.css";
-const ToogleButton = (props: {
-  handleChange: any;
-  default: boolean;
-  trueVal: string;
-  falseVal: string;
-  title?: string;
+import type { ChangeEventHandler } from 'react'
+import './style.css'
+
+const ToggleButton = (props: {
+  handleChange: ChangeEventHandler<HTMLInputElement>
+  default: boolean
+  trueVal: string
+  falseVal: string
+  title?: string
 }) => {
   return (
     <div className="SihmKT" title={props.title}>
@@ -13,13 +14,13 @@ const ToogleButton = (props: {
         type="checkbox"
         defaultChecked={props.default}
         onChange={props.handleChange}
-        id={"rghTp"}
+        id={'rghTp'}
       />
       <label htmlFor="rghTp">
         <div>{props.trueVal}</div>
         <div>{props.falseVal}</div>
       </label>
     </div>
-  );
-};
-export default ToogleButton;
+  )
+}
+export default ToggleButton
