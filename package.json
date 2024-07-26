@@ -18,8 +18,7 @@
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
-    "predeploy": "yarn lint && yarn build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "yarn lint && yarn build && gh-pages -d dist"
   },
   "dependencies": {
     "@primer/octicons-react": "^19.11.0",
