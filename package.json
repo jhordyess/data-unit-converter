@@ -14,12 +14,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "build": "yarn validate && vite build",
+    "preview": "yarn build && vite preview",
+    "lint": "eslint .",
     "format": "prettier --write .",
+    "check:ts": "tsc -b --noEmit",
     "deploy": "yarn lint && yarn build && gh-pages -d dist",
-    "test": "vitest"
+    "test": "vitest",
+    "validate": "yarn check:ts && yarn lint && yarn test"
   },
   "dependencies": {
     "@primer/octicons-react": "^19.14.0",
