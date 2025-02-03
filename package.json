@@ -21,7 +21,7 @@
     "check:ts": "tsc -b --noEmit",
     "deploy": "yarn lint && yarn build && gh-pages -d dist",
     "test": "vitest",
-    "validate": "yarn check:ts && yarn lint && yarn test"
+    "validate": "yarn check:ts && yarn lint && yarn test --run"
   },
   "dependencies": {
     "@primer/octicons-react": "^19.14.0",
