@@ -25,7 +25,7 @@ const convert = (value: string, unit1: string, unit2: string) => {
       .toNumeric(unit2)
       .valueOf()
     return isNaN(aux) ? '' : aux.toString()
-  } catch (error) {
+  } catch {
     return ''
   }
 }
