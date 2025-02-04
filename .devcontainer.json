@@ -1,6 +1,6 @@
 {
   "name": "data-unit-converter",
-  "image": "jhordyess/node:18",
+  "image": "jhordyess/node",
   "customizations": {
     "vscode": {
       "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"],
