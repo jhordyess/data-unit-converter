@@ -17,11 +17,11 @@ export const ToggleButton: FC<ToggleButtonProps> = ({
   setValue,
   title
 }) => {
-  const handleChange: ChangeEventHandler<HTMLInputElement> = () => setValue(!value)
+  const handleChange: ChangeEventHandler<HTMLInputElement> = e => setValue(e.target.checked)
 
   return (
     <div className="SihmKT" title={title}>
-      <input type="checkbox" checked={value} onChange={handleChange} id={'rghTp'} />
+      <input type="checkbox" checked={value} onChange={handleChange} id={'rghTp'} hidden />
 
       <label htmlFor="rghTp">
         <div>{traditionalLabel}</div>

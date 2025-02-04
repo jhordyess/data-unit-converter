@@ -12,42 +12,38 @@ div.SihmKT > label {
 }
 
 div.SihmKT > label div {
-  padding: 7px 8px;
+  padding: 8px;
   margin: 0px;
-  border: 2px solid var(--primary-color);
-}
-
-div.SihmKT > label:hover div {
-  border-color: var(--hover-color);
-}
-
-div.SihmKT > input {
-  display: none;
+  border: 1px solid;
 }
 
 div.SihmKT > label > div:first-child {
-  background-color: white;
-  color: gray;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
   border-radius: 4px 0px 0px 4px;
 }
 
-div.SihmKT > label > div:last-child {
-  background-color: var(--primary-color);
-  color: white;
-  border-radius: 0px 4px 4px 0px;
-}
-
 div.SihmKT > input:checked + label > div:first-child {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-div.SihmKT > input:checked + label > div:last-child {
   background-color: white;
+  border-color: rgb(204, 204, 204);
   color: gray;
 }
 
-div.SihmKT > input:checked + label:hover > div:first-child,
-div.SihmKT > label:hover > div:last-child {
+div.SihmKT > label > div:last-child {
+  background-color: white;
+  border-color: rgb(204, 204, 204);
+  color: gray;
+  border-radius: 0px 4px 4px 0px;
+}
+
+div.SihmKT > input:checked + label > div:last-child {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+div.SihmKT > input:checked + label:hover > div:last-child,
+div.SihmKT > label:hover > div:first-child {
   background-color: var(--hover-color);
 }
