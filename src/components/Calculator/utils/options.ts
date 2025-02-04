@@ -2,7 +2,7 @@ export type TOption = { value: string; label: string; symbol?: string }
 
 export type TOptions = { label: string; options: TOption[] }[]
 
-const selectOptions: TOptions = [
+export const selectOptionsBinary: TOptions = [
   {
     label: 'Basic',
     options: [
@@ -26,7 +26,7 @@ const selectOptions: TOptions = [
   },
   {
     label: 'Bit SI',
-    //multiples of bit, decimal prefixs
+    //multiples of bit, decimal prefixes
     options: [
       {
         value: 'kb',
@@ -52,7 +52,7 @@ const selectOptions: TOptions = [
   },
   {
     label: 'Bit bin',
-    //multiples of bit, binary prefixs
+    //multiples of bit, binary prefixes
     options: [
       {
         value: 'Kib',
@@ -78,7 +78,7 @@ const selectOptions: TOptions = [
   },
   {
     label: 'Byte SI',
-    //multiples of byte, decimal prefixs
+    //multiples of byte, decimal prefixes
     options: [
       {
         value: 'kB',
@@ -130,4 +130,17 @@ const selectOptions: TOptions = [
   }
 ]
 
-export default selectOptions
+export const selectOptionsTraditional: TOptions = [
+  selectOptionsBinary[0],
+  selectOptionsBinary[1],
+  {
+    label: 'Byte SI',
+    options: [
+      { value: 'KiB', label: 'kilobyte', symbol: 'kB' },
+      { value: 'MiB', label: 'megabyte', symbol: 'MB' },
+      { value: 'GiB', label: 'gigabyte', symbol: 'GB' },
+      { value: 'TiB', label: 'terabyte', symbol: 'TB' },
+      { value: 'PiB', label: 'petabyte', symbol: 'PB' }
+    ]
+  }
+]
