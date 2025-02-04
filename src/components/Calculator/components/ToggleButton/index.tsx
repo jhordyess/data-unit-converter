@@ -5,15 +5,15 @@ interface ToggleButtonProps {
   value: boolean
   setValue: (value: boolean) => void
   labels: {
-    onLabel: string
-    offLabel: string
+    traditionalLabel: string
+    binaryLabel: string
   }
   title?: string
 }
 
 export const ToggleButton: FC<ToggleButtonProps> = ({
   value,
-  labels: { offLabel, onLabel },
+  labels: { binaryLabel, traditionalLabel },
   setValue,
   title
 }) => {
@@ -24,8 +24,8 @@ export const ToggleButton: FC<ToggleButtonProps> = ({
       <input type="checkbox" checked={value} onChange={handleChange} id={'rghTp'} />
 
       <label htmlFor="rghTp">
-        <div>{onLabel}</div>
-        <div>{offLabel}</div>
+        <div>{traditionalLabel}</div>
+        <div>{binaryLabel}</div>
       </label>
     </div>
   )

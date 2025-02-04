@@ -2,7 +2,7 @@ export type TOption = { value: string; label: string; symbol?: string }
 
 export type TOptions = { label: string; options: TOption[] }[]
 
-const selectOptions: TOptions = [
+export const selectOptionsBinary: TOptions = [
   {
     label: 'Basic',
     options: [
@@ -130,4 +130,17 @@ const selectOptions: TOptions = [
   }
 ]
 
-export default selectOptions
+export const selectOptionsTraditional: TOptions = [
+  selectOptionsBinary[0],
+  selectOptionsBinary[1],
+  {
+    label: 'Byte SI',
+    options: [
+      { value: 'KiB', label: 'kilobyte', symbol: 'kB' },
+      { value: 'MiB', label: 'megabyte', symbol: 'MB' },
+      { value: 'GiB', label: 'gigabyte', symbol: 'GB' },
+      { value: 'TiB', label: 'terabyte', symbol: 'TB' },
+      { value: 'PiB', label: 'petabyte', symbol: 'PB' }
+    ]
+  }
+]
