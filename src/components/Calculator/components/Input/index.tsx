@@ -12,26 +12,28 @@ export interface InputRef {
   animationOn: () => void
 }
 
-const Input = forwardRef<InputRef, InputProps>(({ symbol, value, handleChangeValue }, ref) => {
-  const [animation, setAnimation] = useState<boolean>(false)
+export const Input = forwardRef<InputRef, InputProps>(
+  ({ symbol, value, handleChangeValue }, ref) => {
+    const [animation, setAnimation] = useState(false)
 
-  const animationOff = () => {
-    setAnimation(false)
+    const animationOff = () => {
+      setAnimation(false)
+    }
+
+    const animationOn = () => {
+      setAnimation(true)
+    }
+
+    useImperativeHandle(ref, () => ({
+      animationOn
+    }))
+
+    return (
+      <div className={animation ? 'bFXyQu animation' : 'bFXyQu'} onAnimationEnd={animationOff}>
+        <div>{symbol}</div>
+
+        <input type="text" value={value} onChange={handleChangeValue} />
+      </div>
+    )
   }
-
-  const animationOn = () => {
-    setAnimation(true)
-  }
-
-  useImperativeHandle(ref, () => ({
-    animationOn
-  }))
-
-  return (
-    <div className={animation ? 'bFXyQu animation' : 'bFXyQu'} onAnimationEnd={animationOff}>
-      <div>{symbol}</div>
-      <input type="text" value={value} onChange={handleChangeValue} />
-    </div>
-  )
-})
-export default Input
+)

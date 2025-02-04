@@ -1,26 +1,32 @@
-import type { ChangeEventHandler } from 'react'
+import type { ChangeEventHandler, FC } from 'react'
 import './style.css'
 
-const ToggleButton = (props: {
-  handleChange: ChangeEventHandler<HTMLInputElement>
-  default: boolean
-  trueVal: string
-  falseVal: string
+interface ToggleButtonProps {
+  value: boolean
+  setValue: (value: boolean) => void
+  labels: {
+    onLabel: string
+    offLabel: string
+  }
   title?: string
+}
+
+export const ToggleButton: FC<ToggleButtonProps> = ({
+  value,
+  labels: { offLabel, onLabel },
+  setValue,
+  title
 }) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = () => setValue(!value)
+
   return (
-    <div className="SihmKT" title={props.title}>
-      <input
-        type="checkbox"
-        defaultChecked={props.default}
-        onChange={props.handleChange}
-        id={'rghTp'}
-      />
+    <div className="SihmKT" title={title}>
+      <input type="checkbox" checked={value} onChange={handleChange} id={'rghTp'} />
+
       <label htmlFor="rghTp">
-        <div>{props.trueVal}</div>
-        <div>{props.falseVal}</div>
+        <div>{onLabel}</div>
+        <div>{offLabel}</div>
       </label>
     </div>
   )
 }
-export default ToggleButton
