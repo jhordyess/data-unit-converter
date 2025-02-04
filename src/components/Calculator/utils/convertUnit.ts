@@ -13,6 +13,8 @@ export const convertUnit = (
   roundToTwoDecimals = false
 ): string => {
   try {
+    if (!value) return ''
+
     const unit = math.unit(`${value} ${unit1}`)
     const convertedValue = unit.toNumber(unit2)
 
