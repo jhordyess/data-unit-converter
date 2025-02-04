@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { type ActionMeta, type SingleValue } from 'react-select'
+import { type SingleValue } from 'react-select'
 
 import { type InputRef } from './components/Input'
 import { convert, isValidNumberFormat } from './utils/calculator'
@@ -7,9 +7,10 @@ import { selectOptionsTraditional, type TOption } from './utils/options'
 import type { CalculatorHookReturn } from './types'
 
 export const useCalculator = (): CalculatorHookReturn => {
-  const enableBinaryUnits = useRef(false)
-  const toggleBinaryUnit = (value: boolean) => {
-    enableBinaryUnits.current = value
+  const [isBinaryUnitEnabled, setIsBinaryUnit] = useState(false)
+
+  const handleToggleSwitch = (value: boolean): void => {
+    setIsBinaryUnit(value)
     resetCalculator()
   }
 
@@ -20,41 +21,28 @@ export const useCalculator = (): CalculatorHookReturn => {
 
   const handleChangeValue1 = (value: string) => {
     setDirection(true)
-    if (!enableBinaryUnits.current) enableBinaryUnits.current = true
     if (isValidNumberFormat(value)) setValue1(value)
   }
 
-  const handleChangeUnit1: (
-    newValue: SingleValue<TOption>,
-    actionMeta: ActionMeta<TOption>
-  ) => void = event => {
-    if (!value1 || !value2) enableBinaryUnits.current = false
-    if (event) setUnit1(event)
+  const handleChangeUnit1: (newValue: SingleValue<TOption>) => void = newValue => {
+    if (newValue) setUnit1(newValue)
   }
 
   const [value2, setValue2] = useState('')
   const [unit2, setUnit2] = useState(selectOptionsTraditional[0].options[2])
+
   const handleChangeValue2 = (value: string) => {
     setDirection(false)
-    if (!enableBinaryUnits.current) enableBinaryUnits.current = true
     if (isValidNumberFormat(value)) setValue2(value)
   }
-  const handleChangeUnit2: (
-    newValue: SingleValue<TOption>,
-    actionMeta: ActionMeta<TOption>
-  ) => void = event => {
-    if (!value1 || !value2) enableBinaryUnits.current = false
-    if (event) setUnit2(event)
+  const handleChangeUnit2: (newValue: SingleValue<TOption>) => void = newValue => {
+    if (newValue) setUnit2(newValue)
   }
 
   const childRef1 = useRef<InputRef>(null)
   const childRef2 = useRef<InputRef>(null)
 
   useEffect(() => {
-    if (!enableBinaryUnits.current) {
-      enableBinaryUnits.current = true
-      return
-    }
     if (direction) {
       setValue2(convert(value1, unit1.value, unit2.value))
       childRef2.current?.animationOn()
@@ -62,7 +50,6 @@ export const useCalculator = (): CalculatorHookReturn => {
       setValue1(convert(value2, unit2.value, unit1.value))
       childRef1.current?.animationOn()
     }
-    enableBinaryUnits.current = false
   }, [value1, value2, unit1, unit2, direction])
 
   const flipUnits = (): void => {
@@ -74,14 +61,12 @@ export const useCalculator = (): CalculatorHookReturn => {
         setDirection(true)
         setValue1(value2)
       }
-    if (!value1 || !value2) enableBinaryUnits.current = false
     const aux = unit2
     setUnit2(unit1)
     setUnit1(aux)
   }
 
   const resetCalculator = (): void => {
-    enableBinaryUnits.current = false
     setDirection(true)
     setValue2('')
     setValue1('')
@@ -90,7 +75,7 @@ export const useCalculator = (): CalculatorHookReturn => {
   }
 
   return {
-    toggleSwitch: { value: enableBinaryUnits.current, set: toggleBinaryUnit },
+    binaryUnitEnabled: { value: isBinaryUnitEnabled, set: handleToggleSwitch },
     resetCalculator,
     conversionDirection: { value: direction },
     flipUnits,
