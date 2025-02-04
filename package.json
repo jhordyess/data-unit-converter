@@ -19,7 +19,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "check:ts": "tsc -b --noEmit",
-    "deploy": "yarn lint && yarn build && gh-pages -d dist",
+    "deploy": "yarn build && gh-pages -d dist",
     "test": "vitest",
     "validate": "yarn check:ts && yarn lint && yarn test --run"
   },
