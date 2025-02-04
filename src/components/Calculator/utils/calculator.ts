@@ -8,7 +8,8 @@ math.config({
   number: 'Fraction'
 })
 
-export const isValidNumberFormat = /^-?(?:0|[1-9]\d*)?(?:\.\d*)?(?:[eE][+-]?\d*)?$/.test
+export const isValidNumberFormat = (str: string) =>
+  /^-?(?:0|[1-9]\d*)?(?:\.\d*)?(?:[eE][+-]?\d*)?$/.test(str)
 
 export const convert = (value: string, unit1: string, unit2: string) => {
   try {
