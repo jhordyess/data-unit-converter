@@ -1,34 +1,12 @@
 import './style.css'
-
+import { SyncIcon, ArrowRightIcon, ArrowLeftIcon, TrashIcon } from '@primer/octicons-react'
 import { useRef, useState, useEffect, type ChangeEventHandler } from 'react'
 import Select, { type ActionMeta, type SingleValue } from 'react-select'
-import { create, all } from 'mathjs'
-import { SyncIcon, ArrowRightIcon, ArrowLeftIcon, TrashIcon } from '@primer/octicons-react'
+
+import Input, { type InputRef } from './components/Input'
+import ToggleButton from './components/ToggleButton'
 import selectOptions, { type TOptions, type TOption } from './options'
-import Input, { type InputRef } from './Input'
-import ToggleButton from './ToggleButton'
-
-const config = {}
-const math = create(all, config)
-math.createUnit('word', '16 b')
-math.createUnit('nibble', '4 b')
-math.config({
-  number: 'Fraction'
-})
-
-const pattern = /^-?(?:0|[1-9]\d*)?(?:\.\d*)?(?:[eE][+-]?\d*)?$/
-
-const convert = (value: string, unit1: string, unit2: string) => {
-  try {
-    const aux = math
-      .evaluate(`${parseFloat(value)} ${unit1} to ${unit2}`)
-      .toNumeric(unit2)
-      .valueOf()
-    return isNaN(aux) ? '' : aux.toString()
-  } catch {
-    return ''
-  }
-}
+import { convert, isValidNumberFormat } from './functions/calculator'
 
 export default function Calculator() {
   const sw = useRef(false)
@@ -40,7 +18,7 @@ export default function Calculator() {
   const handleChangeValue1: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
     setDirection(true)
     if (!sw.current) sw.current = true
-    if (pattern.test(currentTarget.value)) setValue1(currentTarget.value)
+    if (isValidNumberFormat(currentTarget.value)) setValue1(currentTarget.value)
   }
 
   const handleChangeUnit1: (
@@ -56,7 +34,7 @@ export default function Calculator() {
   const handleChangeValue2: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
     setDirection(false)
     if (!sw.current) sw.current = true
-    if (pattern.test(currentTarget.value)) setValue2(currentTarget.value)
+    if (isValidNumberFormat(currentTarget.value)) setValue2(currentTarget.value)
   }
   const handleChangeUnit2: (
     newValue: SingleValue<TOption>,
