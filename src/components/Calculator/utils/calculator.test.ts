@@ -35,3 +35,19 @@ describe('Check if the conversion is correct by the nearest unit', () => {
     })
   })
 })
+
+describe('Check if the conversion is correct with rounding', () => {
+  const testCases = [
+    { value: '1.2345', unit1: 'b', unit2: 'B', expected: '0.15' },
+    { value: '1234.5678', unit1: 'B', unit2: 'kb', expected: '9.88' },
+    { value: '9876.5432', unit1: 'kB', unit2: 'Mb', expected: '79.01' },
+    { value: '0.1234', unit1: 'PB', unit2: 'Tib', expected: '897.85' },
+    { value: '5678.9101', unit1: 'kB', unit2: 'MiB', expected: '5.42' }
+  ]
+
+  testCases.forEach(({ value, unit1, unit2, expected }) => {
+    it(`should convert ${value} ${unit1} to ${unit2} with rounding`, () => {
+      expect(convert(value, unit1, unit2, true)).toBe(expected)
+    })
+  })
+})
