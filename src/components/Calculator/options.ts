@@ -26,7 +26,7 @@ const selectOptions: TOptions = [
   },
   {
     label: 'Bit SI',
-    //multiples of bit, decimal prefixs
+    //multiples of bit, decimal prefixes
     options: [
       {
         value: 'kb',
@@ -52,7 +52,7 @@ const selectOptions: TOptions = [
   },
   {
     label: 'Bit bin',
-    //multiples of bit, binary prefixs
+    //multiples of bit, binary prefixes
     options: [
       {
         value: 'Kib',
@@ -78,7 +78,7 @@ const selectOptions: TOptions = [
   },
   {
     label: 'Byte SI',
-    //multiples of byte, decimal prefixs
+    //multiples of byte, decimal prefixes
     options: [
       {
         value: 'kB',
