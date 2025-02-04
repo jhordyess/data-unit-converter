@@ -2,7 +2,8 @@ import { useRef, useState, useEffect } from 'react'
 import { type SingleValue } from 'react-select'
 
 import { type InputRef } from './components/Input'
-import { convert, isValidNumberFormat } from './utils/calculator'
+import { convertUnit } from './utils/convertUnit'
+import { isValidNumberFormat } from './utils/numberCheck'
 import { selectOptionsTraditional, type TOption } from './utils/options'
 import type { CalculatorHookReturn } from './types'
 
@@ -44,10 +45,10 @@ export const useCalculator = (): CalculatorHookReturn => {
 
   useEffect(() => {
     if (direction) {
-      setValue2(convert(value1, unit1.value, unit2.value))
+      setValue2(convertUnit(value1, unit1.value, unit2.value))
       childRef2.current?.animationOn()
     } else {
-      setValue1(convert(value2, unit2.value, unit1.value))
+      setValue1(convertUnit(value2, unit2.value, unit1.value))
       childRef1.current?.animationOn()
     }
   }, [value1, value2, unit1, unit2, direction])

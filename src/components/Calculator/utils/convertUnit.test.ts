@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { convert } from './calculator'
+import { convertUnit } from './convertUnit'
 
 describe('Check if the conversion is correct by the nearest unit', () => {
   const testCases = [
@@ -31,7 +31,7 @@ describe('Check if the conversion is correct by the nearest unit', () => {
 
   testCases.forEach(({ value, unit1, unit2, expected }) => {
     it(`should convert ${value} ${unit1} to ${unit2}`, () => {
-      expect(convert(value, unit1, unit2)).toBe(expected)
+      expect(convertUnit(value, unit1, unit2)).toBe(expected)
     })
   })
 })
@@ -47,7 +47,7 @@ describe('Check if the conversion is correct with rounding', () => {
 
   testCases.forEach(({ value, unit1, unit2, expected }) => {
     it(`should convert ${value} ${unit1} to ${unit2} with rounding`, () => {
-      expect(convert(value, unit1, unit2, true)).toBe(expected)
+      expect(convertUnit(value, unit1, unit2, true)).toBe(expected)
     })
   })
 })

@@ -6,10 +6,7 @@ const math = create(all, {
 math.createUnit('word', '16 b')
 math.createUnit('nibble', '4 b')
 
-export const isValidNumberFormat = (str: string) =>
-  /^-?(?:0|[1-9]\d*)?(?:\.\d*)?(?:[eE][+-]?\d*)?$/.test(str)
-
-export const convert = (
+export const convertUnit = (
   value: string,
   unit1: string,
   unit2: string,
