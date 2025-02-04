@@ -43,13 +43,21 @@ export const useCalculator = (): CalculatorHookReturn => {
   const childRef1 = useRef<InputRef>(null)
   const childRef2 = useRef<InputRef>(null)
 
+  const isFirstRender = useRef(true)
+
   useEffect(() => {
-    if (direction) {
-      setValue2(convertUnit(value1, unit1.value, unit2.value))
-      childRef2.current?.animationOn()
-    } else {
-      setValue1(convertUnit(value2, unit2.value, unit1.value))
-      childRef1.current?.animationOn()
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    if (childRef2.current && childRef1.current) {
+      if (direction) {
+        setValue2(convertUnit(value1, unit1.value, unit2.value))
+        childRef2.current.animationOn()
+      } else {
+        setValue1(convertUnit(value2, unit2.value, unit1.value))
+        childRef1.current.animationOn()
+      }
     }
   }, [value1, value2, unit1, unit2, direction])
 
