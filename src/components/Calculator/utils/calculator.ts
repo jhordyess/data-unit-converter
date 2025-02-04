@@ -1,23 +1,32 @@
 import { create, all } from 'mathjs'
 
-const config = {}
-const math = create(all, config)
-math.createUnit('word', '16 b')
-math.createUnit('nibble', '4 b')
-math.config({
+const math = create(all, {
   number: 'Fraction'
 })
+math.createUnit('word', '16 b')
+math.createUnit('nibble', '4 b')
 
 export const isValidNumberFormat = (str: string) =>
   /^-?(?:0|[1-9]\d*)?(?:\.\d*)?(?:[eE][+-]?\d*)?$/.test(str)
 
-export const convert = (value: string, unit1: string, unit2: string) => {
+export const convert = (
+  value: string,
+  unit1: string,
+  unit2: string,
+  roundToTwoDecimals = false
+): string => {
   try {
-    const aux = math
-      .evaluate(`${parseFloat(value)} ${unit1} to ${unit2}`)
-      .toNumeric(unit2)
-      .valueOf()
-    return isNaN(aux) ? '' : aux.toString()
+    const unit = math.unit(`${value} ${unit1}`)
+    const convertedValue = unit.toNumber(unit2)
+
+    if (isNaN(convertedValue)) {
+      throw new Error('Invalid conversion')
+    }
+
+    if (roundToTwoDecimals) {
+      return math.round(convertedValue, 2).toString()
+    }
+    return convertedValue.toString()
   } catch {
     return ''
   }
