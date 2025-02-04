@@ -5,7 +5,7 @@ import { InputRef } from './components/Input'
 import { type TOption } from './utils/options'
 
 export interface CalculatorProps {
-  toggleSwitch: {
+  binaryUnitEnabled: {
     value: boolean
     set: (value: boolean) => void
   }
@@ -26,7 +26,7 @@ export interface CalculatorProps {
   }
   firstSelect: {
     value: TOption
-    onChange: (newValue: SingleValue<TOption>, actionMeta: ActionMeta<TOption>) => void
+    onChange: (newValue: SingleValue<TOption>) => void
   }
   secondSelect: {
     value: TOption

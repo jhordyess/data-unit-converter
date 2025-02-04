@@ -9,7 +9,7 @@ import { selectOptionsBinary, selectOptionsTraditional } from './utils/options'
 import type { CalculatorProps } from './types'
 
 export const CalculatorUI: FC<CalculatorProps> = ({
-  toggleSwitch,
+  binaryUnitEnabled,
   resetCalculator,
   conversionDirection,
   flipUnits,
@@ -21,9 +21,9 @@ export const CalculatorUI: FC<CalculatorProps> = ({
   <>
     <div className="optionsContainer">
       <ToggleButton
-        value={toggleSwitch.value}
-        setValue={toggleSwitch.set}
-        labels={{ traditionalLabel: 'Binary prefixes', binaryLabel: 'Traditional prefixes' }}
+        value={binaryUnitEnabled.value}
+        setValue={binaryUnitEnabled.set}
+        labels={{ traditionalLabel: 'Traditional prefixes', binaryLabel: 'Binary prefixes' }}
         title="Toggle units"
       />
 
@@ -55,7 +55,7 @@ export const CalculatorUI: FC<CalculatorProps> = ({
     <div className="selectContainer">
       <div style={{ flex: '1' }}>
         <Select
-          options={toggleSwitch ? selectOptionsBinary : selectOptionsTraditional}
+          options={binaryUnitEnabled.value ? selectOptionsBinary : selectOptionsTraditional}
           value={firstSelect.value}
           onChange={firstSelect.onChange}
         />
@@ -67,7 +67,7 @@ export const CalculatorUI: FC<CalculatorProps> = ({
 
       <div style={{ flex: '1' }}>
         <Select
-          options={toggleSwitch ? selectOptionsBinary : selectOptionsTraditional}
+          options={binaryUnitEnabled.value ? selectOptionsBinary : selectOptionsTraditional}
           value={secondSelect.value}
           onChange={secondSelect.onChange}
         />
