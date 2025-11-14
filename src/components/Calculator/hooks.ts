@@ -63,11 +63,14 @@ const reducer = (state: State, action: Action): State => {
     // Update the first unit and recalculate value2, use first value with the new unit to convert using the second unit
     case 'CHANGE_UNIT1': {
       const newUnit1 = action.payload
+      const newUnit2 = newUnit1.value === state.unit2.value ? state.unit1 : state.unit2
+
       const newValue2 =
-        state.value1 === '' ? '' : convertUnit(state.value1, newUnit1.value, state.unit2.value)
+        state.value1 === '' ? '' : convertUnit(state.value1, newUnit1.value, newUnit2.value)
       return {
         ...state,
         unit1: newUnit1,
+        unit2: newUnit2,
         value2: newValue2
       }
     }
@@ -75,10 +78,12 @@ const reducer = (state: State, action: Action): State => {
     // Update the second unit and recalculate value2, use first value with the first unit to convert using the new second unit
     case 'CHANGE_UNIT2': {
       const newUnit2 = action.payload
+      const newUnit1 = newUnit2.value === state.unit1.value ? state.unit2 : state.unit1
       const newValue2 =
-        state.value1 === '' ? '' : convertUnit(state.value1, state.unit1.value, newUnit2.value)
+        state.value1 === '' ? '' : convertUnit(state.value1, newUnit1.value, newUnit2.value)
       return {
         ...state,
+        unit1: newUnit1,
         unit2: newUnit2,
         value2: newValue2
       }
