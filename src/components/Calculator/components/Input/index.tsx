@@ -1,6 +1,7 @@
 import './style.css'
+import { useAnimate, type TargetAndTransition } from 'motion/react'
 
-import { useImperativeHandle, useState, forwardRef } from 'react'
+import { useEffect, useRef, type FC } from 'react'
 
 interface InputProps {
   value: string
@@ -8,30 +9,27 @@ interface InputProps {
   symbol: string
 }
 
-export interface InputRef {
-  animationOn: () => void
+const borderAnimation: TargetAndTransition = {
+  borderColor: ['#cccccc', '#000000bf', '#cccccc'],
+  transition: { duration: 0.75 }
 }
 
-export const Input = forwardRef<InputRef, InputProps>(({ symbol, value, setValue }, ref) => {
-  const [animation, setAnimation] = useState(false)
+export const Input: FC<InputProps> = ({ symbol, value, setValue }) => {
+  const prevValue = useRef(value)
+  const [scope, animate] = useAnimate<HTMLDivElement>()
 
-  const animationOff = () => {
-    setAnimation(false)
-  }
-
-  const animationOn = () => {
-    setAnimation(true)
-  }
-
-  useImperativeHandle(ref, () => ({
-    animationOn
-  }))
+  useEffect(() => {
+    if (value === prevValue.current) return
+    animate(scope.current, borderAnimation)
+    animate(scope.current.children[0], borderAnimation)
+    prevValue.current = value
+  }, [value, animate, scope])
 
   return (
-    <div className={animation ? 'bFXyQu animation' : 'bFXyQu'} onAnimationEnd={animationOff}>
+    <div ref={scope} className="bFXyQu">
       <div>{symbol}</div>
 
       <input type="text" value={value} onChange={e => setValue(e.target.value)} />
     </div>
   )
-})
+}
