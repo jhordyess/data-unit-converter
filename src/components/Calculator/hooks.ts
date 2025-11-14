@@ -1,11 +1,12 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState } from 'react'
 import { type SingleValue } from 'react-select'
 
-import { type InputRef } from './components/Input'
 import { convertUnit } from './utils/convertUnit'
 import { isValidNumberFormat } from './utils/numberCheck'
 import { selectOptionsTraditional, type TOption } from './utils/options'
 import type { CalculatorHookReturn } from './types'
+
+type Direction = 'TO_FIRST' | 'TO_SECOND'
 
 export const useCalculator = (): CalculatorHookReturn => {
   const [isBinaryUnitEnabled, setIsBinaryUnit] = useState(false)
@@ -15,70 +16,75 @@ export const useCalculator = (): CalculatorHookReturn => {
     resetCalculator()
   }
 
-  const [direction, setDirection] = useState(true)
-
-  const [value1, setValue1] = useState('')
+  const [values, setValues] = useState<{
+    value1: string
+    value2: string
+    direction: Direction
+  }>({ value1: '', value2: '', direction: 'TO_SECOND' })
   const [unit1, setUnit1] = useState<TOption>(selectOptionsTraditional[0].options[0])
+  const [unit2, setUnit2] = useState<TOption>(selectOptionsTraditional[0].options[2])
 
   const handleChangeValue1 = (value: string) => {
-    setDirection(true)
-    if (isValidNumberFormat(value)) setValue1(value)
+    if (isValidNumberFormat(value)) {
+      setValues({
+        value1: value,
+        value2: convertUnit(value, unit1.value, values.value2 ? unit1.value : unit1.value),
+        direction: 'TO_SECOND'
+      })
+    }
   }
 
-  const handleChangeUnit1: (newValue: SingleValue<TOption>) => void = newValue => {
-    if (newValue) setUnit1(newValue)
+  const handleChangeUnit1 = (newUnit: SingleValue<TOption>) => {
+    if (newUnit) {
+      setUnit1(newUnit)
+      setValues(prevValues => ({
+        ...prevValues,
+        value2: convertUnit(prevValues.value1, newUnit.value, unit2.value)
+      }))
+    }
   }
-
-  const [value2, setValue2] = useState('')
-  const [unit2, setUnit2] = useState(selectOptionsTraditional[0].options[2])
 
   const handleChangeValue2 = (value: string) => {
-    setDirection(false)
-    if (isValidNumberFormat(value)) setValue2(value)
-  }
-  const handleChangeUnit2: (newValue: SingleValue<TOption>) => void = newValue => {
-    if (newValue) setUnit2(newValue)
-  }
-
-  const childRef1 = useRef<InputRef>(null)
-  const childRef2 = useRef<InputRef>(null)
-
-  const isFirstRender = useRef(true)
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
+    if (isValidNumberFormat(value)) {
+      setValues({
+        value1: convertUnit(value, unit2.value, unit1.value),
+        value2: value,
+        direction: 'TO_FIRST'
+      })
     }
-    if (childRef2.current && childRef1.current) {
-      if (direction) {
-        setValue2(convertUnit(value1, unit1.value, unit2.value))
-        childRef2.current.animationOn()
-      } else {
-        setValue1(convertUnit(value2, unit2.value, unit1.value))
-        childRef1.current.animationOn()
-      }
+  }
+  const handleChangeUnit2 = (newUnit: SingleValue<TOption>) => {
+    if (newUnit) {
+      setUnit2(newUnit)
+      setValues(prevValues => ({
+        ...prevValues,
+        value1: convertUnit(prevValues.value2, newUnit.value, unit1.value)
+      }))
     }
-  }, [value1, value2, unit1, unit2, direction])
+  }
 
   const flipUnits = (): void => {
-    if (value1 || value1)
-      if (direction) {
-        setDirection(false)
-        setValue2(value1)
-      } else {
-        setDirection(true)
-        setValue1(value2)
-      }
-    const aux = unit2
-    setUnit2(unit1)
-    setUnit1(aux)
+    if (values.value1 === '' && values.value2 === '') return
+
+    const newUnit1 = unit2
+    const newUnit2 = unit1
+    const direction = values.direction === 'TO_SECOND'
+
+    setUnit1(newUnit1)
+    setUnit2(newUnit2)
+    setValues(prevValues => ({
+      value1: direction
+        ? prevValues.value2
+        : convertUnit(prevValues.value2, newUnit2.value, newUnit1.value),
+      value2: direction
+        ? convertUnit(prevValues.value1, newUnit1.value, newUnit2.value)
+        : prevValues.value1,
+      direction: direction ? 'TO_FIRST' : 'TO_SECOND'
+    }))
   }
 
   const resetCalculator = (): void => {
-    setDirection(true)
-    setValue2('')
-    setValue1('')
+    setValues({ value1: '', value2: '', direction: 'TO_SECOND' })
     setUnit1(selectOptionsTraditional[0].options[0])
     setUnit2(selectOptionsTraditional[0].options[2])
   }
@@ -86,10 +92,10 @@ export const useCalculator = (): CalculatorHookReturn => {
   return {
     binaryUnitEnabled: { value: isBinaryUnitEnabled, set: handleToggleSwitch },
     resetCalculator,
-    conversionDirection: { value: direction },
+    conversionDirection: { value: values.direction === 'TO_SECOND' },
     flipUnits,
-    firstInput: { value: value1, setValue: handleChangeValue1, ref: childRef1 },
-    secondInput: { value: value2, setValue: handleChangeValue2, ref: childRef2 },
+    firstInput: { value: values.value1, setValue: handleChangeValue1 },
+    secondInput: { value: values.value2, setValue: handleChangeValue2 },
     firstSelect: { value: unit1, onChange: handleChangeUnit1 },
     secondSelect: { value: unit2, onChange: handleChangeUnit2 }
   }
