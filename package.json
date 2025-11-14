@@ -1,7 +1,7 @@
 {
   "name": "data-unit-converter",
   "description": "A simple data unit converter",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Jhordy Gavinchu",
   "keywords": [
     "react",
