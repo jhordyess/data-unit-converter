@@ -129,10 +129,10 @@ export const useCalculator = (): CalculatorHookReturn => {
 
   return {
     binaryUnitEnabled: { value: state.isBinaryUnit, set: handleToggleSwitch },
-    resetCalculator,
     firstInput: { value: state.value1, setValue: handleChangeValue1 },
     secondInput: { value: state.value2, setValue: handleChangeValue2 },
     firstSelect: { value: state.unit1, onChange: handleChangeUnit1 },
-    secondSelect: { value: state.unit2, onChange: handleChangeUnit2 }
+    secondSelect: { value: state.unit2, onChange: handleChangeUnit2 },
+    resetCalculator
   }
 }
