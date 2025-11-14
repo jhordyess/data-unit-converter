@@ -37,7 +37,6 @@ export const CalculatorUI: FC<CalculatorProps> = ({
         setValue={firstInput.setValue}
         value={firstInput.value}
         symbol={firstSelect.value.symbol || firstSelect.value.value}
-        ref={firstInput.ref}
       />
 
       <button>
@@ -48,7 +47,6 @@ export const CalculatorUI: FC<CalculatorProps> = ({
         setValue={secondInput.setValue}
         value={secondInput.value}
         symbol={secondSelect.value.symbol || secondSelect.value.value}
-        ref={secondInput.ref}
       />
     </div>
 
