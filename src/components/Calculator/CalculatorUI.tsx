@@ -38,7 +38,7 @@ export const CalculatorUI: FC<CalculatorProps> = ({
       />
 
       <button style={{ cursor: 'auto' }}>
-        <ArrowBothIcon size={20} />
+        <ArrowBothIcon size={24} />
       </button>
 
       <Input
@@ -56,6 +56,8 @@ export const CalculatorUI: FC<CalculatorProps> = ({
           onChange={firstSelect.onChange}
         />
       </div>
+
+      <div style={{ width: '36px' }} />
 
       <div style={{ flex: '1' }}>
         <Select
