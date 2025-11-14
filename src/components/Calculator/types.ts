@@ -8,7 +8,6 @@ export interface CalculatorProps {
     set: (value: boolean) => void
   }
   resetCalculator: () => void
-  flipUnits: () => void
   firstInput: {
     value: string
     setValue: (value: string) => void
