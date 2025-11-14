@@ -15,6 +15,7 @@ For a theoretical explanation, you could visit: [Units of information](https://w
 - Programming Language: [TypeScript](https://www.typescriptlang.org/)
 - Build tool: [Vite](https://vitejs.dev/)
 - Testing: [Vitest](https://vitest.dev/), [Testing Library](https://testing-library.com/)
+- Deployment CI/CD: [GitHub Actions](https://github.com/features/actions)
 - Hosting: [GitHub Pages](https://pages.github.com/)
 - Dev Environment: [VSCode](https://code.visualstudio.com/) with the [react-tailwind-ts-starter](https://github.com/jhordyess/react-tailwind-ts-starter) template
 
