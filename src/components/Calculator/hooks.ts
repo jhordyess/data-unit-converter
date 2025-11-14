@@ -1,96 +1,138 @@
-import { useRef, useState, useEffect } from 'react'
+import { useReducer } from 'react'
 import { type SingleValue } from 'react-select'
 
-import { type InputRef } from './components/Input'
 import { convertUnit } from './utils/convertUnit'
 import { isValidNumberFormat } from './utils/numberCheck'
 import { selectOptionsTraditional, type TOption } from './utils/options'
 import type { CalculatorHookReturn } from './types'
 
+type State = {
+  isBinaryUnit: boolean
+  value1: string
+  value2: string
+  unit1: TOption
+  unit2: TOption
+}
+
+type Action =
+  | { type: 'TOGGLE_BINARY'; payload: boolean }
+  | { type: 'CHANGE_VALUE1'; payload: string }
+  | { type: 'CHANGE_VALUE2'; payload: string }
+  | { type: 'CHANGE_UNIT1'; payload: TOption }
+  | { type: 'CHANGE_UNIT2'; payload: TOption }
+  | { type: 'RESET' }
+
+const initialState: State = {
+  isBinaryUnit: false,
+  value1: '',
+  value2: '',
+  unit1: selectOptionsTraditional[0].options[0],
+  unit2: selectOptionsTraditional[0].options[2]
+}
+
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case 'TOGGLE_BINARY':
+      return {
+        ...initialState,
+        isBinaryUnit: action.payload
+      }
+
+    case 'CHANGE_VALUE1': {
+      const v1 = action.payload
+      if (!isValidNumberFormat(v1)) return state
+      const v2 = v1 === '' ? '' : convertUnit(v1, state.unit1.value, state.unit2.value)
+      return {
+        ...state,
+        value1: v1,
+        value2: v2
+      }
+    }
+
+    case 'CHANGE_VALUE2': {
+      const v2 = action.payload
+      if (!isValidNumberFormat(v2)) return state
+      const v1 = v2 === '' ? '' : convertUnit(v2, state.unit2.value, state.unit1.value)
+      return {
+        ...state,
+        value1: v1,
+        value2: v2
+      }
+    }
+
+    // Change the first unit and recalculate value2
+    case 'CHANGE_UNIT1': {
+      const newUnit1 = action.payload
+      const newUnit2 = newUnit1.value === state.unit2.value ? state.unit1 : state.unit2
+
+      const newValue2 =
+        state.value1 === '' ? '' : convertUnit(state.value1, newUnit1.value, newUnit2.value)
+
+      return {
+        ...state,
+        unit1: newUnit1,
+        unit2: newUnit2,
+        value2: newValue2
+      }
+    }
+
+    // Change the second unit and recalculate value2
+    case 'CHANGE_UNIT2': {
+      const newUnit2 = action.payload
+      const newUnit1 = newUnit2.value === state.unit1.value ? state.unit2 : state.unit1
+
+      const newValue2 =
+        state.value1 === '' ? '' : convertUnit(state.value1, newUnit1.value, newUnit2.value)
+
+      return {
+        ...state,
+        unit1: newUnit1,
+        unit2: newUnit2,
+        value2: newValue2
+      }
+    }
+
+    case 'RESET':
+      return initialState
+
+    default:
+      return state
+  }
+}
+
 export const useCalculator = (): CalculatorHookReturn => {
-  const [isBinaryUnitEnabled, setIsBinaryUnit] = useState(false)
+  const [state, dispatch] = useReducer(reducer, undefined, () => initialState)
 
   const handleToggleSwitch = (value: boolean): void => {
-    setIsBinaryUnit(value)
-    resetCalculator()
+    dispatch({ type: 'TOGGLE_BINARY', payload: value })
   }
-
-  const [direction, setDirection] = useState(true)
-
-  const [value1, setValue1] = useState('')
-  const [unit1, setUnit1] = useState<TOption>(selectOptionsTraditional[0].options[0])
 
   const handleChangeValue1 = (value: string) => {
-    setDirection(true)
-    if (isValidNumberFormat(value)) setValue1(value)
+    dispatch({ type: 'CHANGE_VALUE1', payload: value })
   }
 
-  const handleChangeUnit1: (newValue: SingleValue<TOption>) => void = newValue => {
-    if (newValue) setUnit1(newValue)
+  const handleChangeUnit1 = (newUnit: SingleValue<TOption>) => {
+    if (newUnit) dispatch({ type: 'CHANGE_UNIT1', payload: newUnit })
   }
-
-  const [value2, setValue2] = useState('')
-  const [unit2, setUnit2] = useState(selectOptionsTraditional[0].options[2])
 
   const handleChangeValue2 = (value: string) => {
-    setDirection(false)
-    if (isValidNumberFormat(value)) setValue2(value)
-  }
-  const handleChangeUnit2: (newValue: SingleValue<TOption>) => void = newValue => {
-    if (newValue) setUnit2(newValue)
+    dispatch({ type: 'CHANGE_VALUE2', payload: value })
   }
 
-  const childRef1 = useRef<InputRef>(null)
-  const childRef2 = useRef<InputRef>(null)
-
-  const isFirstRender = useRef(true)
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
-    }
-    if (childRef2.current && childRef1.current) {
-      if (direction) {
-        setValue2(convertUnit(value1, unit1.value, unit2.value))
-        childRef2.current.animationOn()
-      } else {
-        setValue1(convertUnit(value2, unit2.value, unit1.value))
-        childRef1.current.animationOn()
-      }
-    }
-  }, [value1, value2, unit1, unit2, direction])
-
-  const flipUnits = (): void => {
-    if (value1 || value1)
-      if (direction) {
-        setDirection(false)
-        setValue2(value1)
-      } else {
-        setDirection(true)
-        setValue1(value2)
-      }
-    const aux = unit2
-    setUnit2(unit1)
-    setUnit1(aux)
+  const handleChangeUnit2 = (newUnit: SingleValue<TOption>) => {
+    if (newUnit) dispatch({ type: 'CHANGE_UNIT2', payload: newUnit })
   }
 
   const resetCalculator = (): void => {
-    setDirection(true)
-    setValue2('')
-    setValue1('')
-    setUnit1(selectOptionsTraditional[0].options[0])
-    setUnit2(selectOptionsTraditional[0].options[2])
+    dispatch({ type: 'RESET' })
   }
 
   return {
-    binaryUnitEnabled: { value: isBinaryUnitEnabled, set: handleToggleSwitch },
-    resetCalculator,
-    conversionDirection: { value: direction },
-    flipUnits,
-    firstInput: { value: value1, setValue: handleChangeValue1, ref: childRef1 },
-    secondInput: { value: value2, setValue: handleChangeValue2, ref: childRef2 },
-    firstSelect: { value: unit1, onChange: handleChangeUnit1 },
-    secondSelect: { value: unit2, onChange: handleChangeUnit2 }
+    binaryUnitEnabled: { value: state.isBinaryUnit, set: handleToggleSwitch },
+    firstInput: { value: state.value1, setValue: handleChangeValue1 },
+    secondInput: { value: state.value2, setValue: handleChangeValue2 },
+    firstSelect: { value: state.unit1, onChange: handleChangeUnit1 },
+    secondSelect: { value: state.unit2, onChange: handleChangeUnit2 },
+    resetCalculator
   }
 }

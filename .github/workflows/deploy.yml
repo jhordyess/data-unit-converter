@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  install-build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      HUSKY: '0'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set-up Node 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22.x'
+
+      - name: Install pnpm 10
+        run: npm install -g pnpm@latest-10
+
+      - name: Install dependencies and build
+        run: |
+          pnpm install
+          pnpm build
+
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: gh-pages
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 import './style.css'
 import type { FC } from 'react'
-import { SyncIcon, ArrowRightIcon, ArrowLeftIcon, TrashIcon } from '@primer/octicons-react'
+import { ArrowBothIcon, TrashIcon } from '@primer/octicons-react'
 import Select from 'react-select'
 
 import { Input } from './components/Input'
@@ -11,8 +11,6 @@ import type { CalculatorProps } from './types'
 export const CalculatorUI: FC<CalculatorProps> = ({
   binaryUnitEnabled,
   resetCalculator,
-  conversionDirection,
-  flipUnits,
   firstInput,
   secondInput,
   firstSelect,
@@ -37,18 +35,16 @@ export const CalculatorUI: FC<CalculatorProps> = ({
         setValue={firstInput.setValue}
         value={firstInput.value}
         symbol={firstSelect.value.symbol || firstSelect.value.value}
-        ref={firstInput.ref}
       />
 
-      <button>
-        {conversionDirection.value ? <ArrowRightIcon size={20} /> : <ArrowLeftIcon size={20} />}
+      <button style={{ cursor: 'auto' }}>
+        <ArrowBothIcon size={24} />
       </button>
 
       <Input
         setValue={secondInput.setValue}
         value={secondInput.value}
         symbol={secondSelect.value.symbol || secondSelect.value.value}
-        ref={secondInput.ref}
       />
     </div>
 
@@ -61,9 +57,7 @@ export const CalculatorUI: FC<CalculatorProps> = ({
         />
       </div>
 
-      <button onClick={flipUnits} title="Invert values">
-        <SyncIcon size={20} />
-      </button>
+      <div style={{ width: '36px' }} />
 
       <div style={{ flex: '1' }}>
         <Select

@@ -8,15 +8,15 @@ math.createUnit('nibble', '4 b')
 
 export const convertUnit = (
   value: string,
-  unit1: string,
-  unit2: string,
+  sourceUnit: string,
+  targetUnit: string,
   roundToTwoDecimals = false
 ): string => {
   try {
     if (!value) return ''
 
-    const unit = math.unit(`${value} ${unit1}`)
-    const convertedValue = unit.toNumber(unit2)
+    const unit = math.unit(`${value} ${sourceUnit}`)
+    const convertedValue = unit.toNumber(targetUnit)
 
     if (isNaN(convertedValue)) {
       throw new Error('Invalid conversion')

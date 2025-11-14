@@ -30,23 +30,3 @@ div.bFXyQu > input {
   width: 100%;
   outline: none;
 }
-
-@keyframes uChange {
-  0% {
-    border-color: hsl(0, 0%, 80%);
-  }
-  50% {
-    border-color: rgba(0, 0, 0, 0.75);
-  }
-  100% {
-    border-color: hsl(0, 0%, 80%);
-  }
-}
-
-div.animation {
-  animation: uChange 0.75s;
-}
-
-div.animation > div:first-child {
-  animation: uChange 0.75s;
-}
