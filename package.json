@@ -1,7 +1,7 @@
 {
   "name": "data-unit-converter",
   "description": "A simple data unit converter",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "author": "Jhordy Gavinchu",
   "keywords": [
     "react",
@@ -29,32 +29,32 @@
     "postinstall": "pnpm audit --audit-level moderate"
   },
   "dependencies": {
-    "@primer/octicons-react": "^19.33.0",
+    "@primer/octicons-react": "^19.41.0",
     "mathjs": "^15.2.0",
     "motion": "^12.43.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-select": "^5.10.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
-    "@testing-library/dom": "^10.4.1",
+    "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^6.10.0",
     "@testing-library/react": "^16.3.3",
-    "@types/node": "^24.13.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
     "eslint": "^9.39.5",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.6",
-    "globals": "^17.12.0",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.10",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.69.0",
-    "vite": "^8.2.2",
-    "vitest": "^4.1.11"
+    "typescript-eslint": "^8.72.0",
+    "vite": "^8.3.5",
+    "vitest": "^4.1.12"
   }
 }
